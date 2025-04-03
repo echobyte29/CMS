@@ -1,4 +1,3 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import MembershipTiers from '@/components/MembershipTiers';
@@ -11,14 +10,14 @@ const Membership = () => {
   }, []);
 
   return (
-    <div className="min-h-screen pt-16">
+    <div className="min-h-screen pt-16 bg-background">
       {/* Hero Section */}
-      <section className="relative py-20 bg-primary/5 overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent"></div>
+      <section className="relative py-20 bg-primary/5 dark:bg-slate-900/50 overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent dark:from-primary/20 dark:via-slate-900/50 dark:to-slate-900"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl mx-auto text-center">
-            <h1 className="text-4xl font-bold sm:text-5xl mb-6 animate-fade-in">Membership Benefits</h1>
-            <p className="text-xl text-muted-foreground mb-8 animate-fade-in" style={{ animationDelay: '100ms' }}>
+            <h1 className="text-4xl font-bold sm:text-5xl mb-6 animate-fade-in dark:text-white">Membership Benefits</h1>
+            <p className="text-xl text-muted-foreground dark:text-slate-300 mb-8 animate-fade-in" style={{ animationDelay: '100ms' }}>
               Join our vibrant community of computing enthusiasts and access exclusive resources, events, and opportunities.
             </p>
             <ButtonCustom size="lg" className="animate-fade-in" style={{ animationDelay: '200ms' }}>
@@ -30,11 +29,11 @@ const Membership = () => {
       </section>
 
       {/* Benefits Section */}
-      <section className="py-20">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Why Join ACM Student Chapter?</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4 dark:text-white">Why Join ACM Student Chapter?</h2>
+            <p className="text-lg text-muted-foreground dark:text-slate-300 max-w-2xl mx-auto">
               Membership in our chapter opens doors to opportunities that will enhance your academic journey and future career.
             </p>
           </div>
@@ -74,18 +73,18 @@ const Membership = () => {
             ].map((benefit, index) => (
               <div 
                 key={index} 
-                className="glass-card p-8 animate-fade-up"
+                className="glass-card p-8 animate-fade-up dark:bg-slate-800/50"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="w-12 h-12 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-6">
+                <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 text-primary flex items-center justify-center mb-6">
                   {benefit.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-4">{benefit.title}</h3>
+                <h3 className="text-xl font-semibold mb-4 dark:text-white">{benefit.title}</h3>
                 <ul className="space-y-3">
                   {benefit.features.map((feature, i) => (
                     <li key={i} className="flex items-start">
                       <Check className="h-5 w-5 text-primary shrink-0 mr-2" />
-                      <span className="text-muted-foreground">{feature}</span>
+                      <span className="text-muted-foreground dark:text-slate-300">{feature}</span>
                     </li>
                   ))}
                 </ul>
@@ -96,14 +95,14 @@ const Membership = () => {
       </section>
 
       {/* Membership Tiers */}
-      <MembershipTiers className="bg-secondary" />
+      <MembershipTiers className="bg-secondary dark:bg-slate-900/50" />
 
       {/* Testimonials */}
-      <section className="py-20">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Member Stories</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+            <h2 className="text-3xl font-bold mb-4 dark:text-white">Member Stories</h2>
+            <p className="text-lg text-muted-foreground dark:text-slate-300 max-w-2xl mx-auto">
               Hear what our members have to say about their experience with the ACM Student Chapter.
             </p>
           </div>
@@ -131,7 +130,7 @@ const Membership = () => {
             ].map((testimonial, index) => (
               <div 
                 key={index} 
-                className="glass-card p-8 flex flex-col animate-fade-up"
+                className="glass-card p-8 flex flex-col animate-fade-up dark:bg-slate-800/50"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
                 <div className="mb-6">
@@ -139,7 +138,7 @@ const Membership = () => {
                     <span key={i} className="text-primary">★</span>
                   ))}
                 </div>
-                <p className="text-muted-foreground mb-6 flex-grow">"{testimonial.quote}"</p>
+                <p className="text-muted-foreground dark:text-slate-300 mb-6 flex-grow">"{testimonial.quote}"</p>
                 <div className="flex items-center">
                   <img 
                     src={testimonial.image} 
@@ -148,7 +147,7 @@ const Membership = () => {
                   />
                   <div>
                     <h4 className="font-semibold">{testimonial.name}</h4>
-                    <p className="text-sm text-muted-foreground">{testimonial.title}</p>
+                    <p className="text-sm text-muted-foreground dark:text-slate-300">{testimonial.title}</p>
                   </div>
                 </div>
               </div>
@@ -158,11 +157,11 @@ const Membership = () => {
       </section>
 
       {/* FAQ Section */}
-      <section className="py-20 bg-white">
+      <section className="py-20 bg-background dark:bg-slate-900/50">
         <div className="max-w-4xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-16">
-            <h2 className="text-3xl font-bold mb-4">Frequently Asked Questions</h2>
-            <p className="text-lg text-muted-foreground">
+            <h2 className="text-3xl font-bold mb-4 dark:text-white">Frequently Asked Questions</h2>
+            <p className="text-lg text-muted-foreground dark:text-slate-300">
               Have questions about membership? Find answers to common inquiries below.
             </p>
           </div>
@@ -192,17 +191,17 @@ const Membership = () => {
             ].map((faq, index) => (
               <div 
                 key={index} 
-                className="glass-card p-6 animate-fade-up"
+                className="glass-card p-6 animate-fade-up dark:bg-slate-800/50"
                 style={{ animationDelay: `${index * 100}ms` }}
               >
-                <h3 className="text-lg font-semibold mb-2">{faq.question}</h3>
-                <p className="text-muted-foreground">{faq.answer}</p>
+                <h3 className="text-lg font-semibold mb-2 dark:text-white">{faq.question}</h3>
+                <p className="text-muted-foreground dark:text-slate-300">{faq.answer}</p>
               </div>
             ))}
           </div>
 
           <div className="text-center mt-10">
-            <p className="text-muted-foreground mb-4">Still have questions?</p>
+            <p className="text-muted-foreground dark:text-slate-300 mb-4">Still have questions?</p>
             <Link to="/contact">
               <ButtonCustom variant="outline">
                 Contact Us

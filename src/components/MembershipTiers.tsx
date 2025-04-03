@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { Check } from 'lucide-react';
 import { ButtonCustom } from './ui/button-custom';
@@ -75,8 +74,8 @@ const MembershipTiers = ({ className }: MembershipTiersProps) => {
     <div id="join" className={cn('py-12', className)}>
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <div className="text-center mb-12">
-          <h2 className="text-3xl font-bold mb-4">Choose Your Membership</h2>
-          <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
+          <h2 className="text-3xl font-bold mb-4 dark:text-white">Choose Your Membership</h2>
+          <p className="text-lg text-muted-foreground dark:text-slate-300 max-w-2xl mx-auto">
             Join our community of computing professionals and students. Select the membership tier that best suits your needs and career stage.
           </p>
         </div>
@@ -86,7 +85,7 @@ const MembershipTiers = ({ className }: MembershipTiersProps) => {
             <div
               key={tier.id}
               className={cn(
-                'glass-card p-6 flex flex-col transition-all duration-300',
+                'glass-card p-6 flex flex-col transition-all duration-300 dark:bg-slate-800/50',
                 tier.popular 
                   ? 'border-primary shadow-lg ring-1 ring-primary/20 md:scale-105 z-10' 
                   : 'hover:shadow-md',
@@ -104,22 +103,20 @@ const MembershipTiers = ({ className }: MembershipTiersProps) => {
               )}
 
               <div className="mb-5">
-                <h3 className="text-xl font-semibold mb-1">{tier.name}</h3>
-                <p className="text-sm text-muted-foreground">{tier.audience}</p>
+                <h3 className="text-xl font-semibold mb-1 dark:text-white">{tier.name}</h3>
+                <p className="text-sm text-muted-foreground dark:text-slate-300">{tier.audience}</p>
               </div>
 
-              <div className="mb-6">
-                <div className="flex items-baseline">
-                  <span className="text-3xl font-bold">{tier.price}</span>
-                  <span className="text-sm text-muted-foreground ml-1">/{tier.period}</span>
-                </div>
+              <div className="flex items-baseline">
+                <span className="text-3xl font-bold dark:text-white">{tier.price}</span>
+                <span className="text-sm text-muted-foreground dark:text-slate-300 ml-1">/{tier.period}</span>
               </div>
 
               <ul className="space-y-3 mb-8 flex-grow">
                 {tier.features.map((feature, index) => (
                   <li key={index} className="flex items-start">
                     <Check className="h-5 w-5 text-primary shrink-0 mr-2" />
-                    <span className="text-sm">{feature}</span>
+                    <span className="text-sm dark:text-slate-300">{feature}</span>
                   </li>
                 ))}
               </ul>
@@ -135,7 +132,7 @@ const MembershipTiers = ({ className }: MembershipTiersProps) => {
         </div>
 
         <div className="mt-10 text-center">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground dark:text-slate-300">
             All memberships are annual and auto-renew. You can cancel anytime. Need help choosing? <a href="#" className="text-primary underline">Contact us</a>
           </p>
         </div>

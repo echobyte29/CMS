@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Input } from "@/components/ui/input";
@@ -20,23 +19,23 @@ const Signup = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12">
-      <div className="glass-card w-full max-w-md p-8 space-y-6">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-background">
+      <div className="glass-card w-full max-w-md p-8 space-y-6 dark:bg-slate-800/50">
         <div className="text-center space-y-2">
-          <h1 className="text-2xl font-bold">Create an account</h1>
-          <p className="text-muted-foreground">Join the ACM Student Chapter today</p>
+          <h1 className="text-2xl font-bold dark:text-white">Create an account</h1>
+          <p className="text-muted-foreground dark:text-slate-300">Join the ACM Student Chapter today</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="name">Full Name</Label>
+            <Label htmlFor="name" className="dark:text-white">Full Name</Label>
             <div className="relative">
               <User className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 id="name"
                 type="text"
                 placeholder="John Doe"
-                className="pl-10"
+                className="pl-10 dark:bg-slate-800/50"
                 value={name}
                 onChange={(e) => setName(e.target.value)}
                 required
@@ -45,14 +44,14 @@ const Signup = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className="dark:text-white">Email</Label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 id="email"
                 type="email"
                 placeholder="you@example.com"
-                className="pl-10"
+                className="pl-10 dark:bg-slate-800/50"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -61,14 +60,14 @@ const Signup = () => {
           </div>
 
           <div className="space-y-2">
-            <Label htmlFor="password">Password</Label>
+            <Label htmlFor="password" className="dark:text-white">Password</Label>
             <div className="relative">
               <Lock className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 id="password"
                 type="password"
                 placeholder="••••••••"
-                className="pl-10"
+                className="pl-10 dark:bg-slate-800/50"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -82,7 +81,7 @@ const Signup = () => {
         </form>
 
         <div className="text-center pt-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground dark:text-slate-300">
             Already have an account?{" "}
             <Link to="/login" className="text-primary font-medium hover:underline">
               Sign in

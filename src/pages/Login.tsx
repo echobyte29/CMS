@@ -1,4 +1,3 @@
-
 import React, { useState } from 'react';
 import { useNavigate, Link } from 'react-router-dom';
 import { Input } from "@/components/ui/input";
@@ -19,23 +18,23 @@ const Login = () => {
   };
 
   return (
-    <div className="min-h-screen flex items-center justify-center px-4 py-12">
-      <div className="glass-card w-full max-w-md p-8 space-y-6">
+    <div className="min-h-screen flex items-center justify-center px-4 py-12 bg-background">
+      <div className="glass-card w-full max-w-md p-8 space-y-6 dark:bg-slate-800/50">
         <div className="text-center space-y-2">
-          <h1 className="text-2xl font-bold">Welcome back</h1>
-          <p className="text-muted-foreground">Sign in to your ACM account</p>
+          <h1 className="text-2xl font-bold dark:text-white">Welcome back</h1>
+          <p className="text-muted-foreground dark:text-slate-300">Sign in to your ACM account</p>
         </div>
 
         <form onSubmit={handleSubmit} className="space-y-6">
           <div className="space-y-2">
-            <Label htmlFor="email">Email</Label>
+            <Label htmlFor="email" className="dark:text-white">Email</Label>
             <div className="relative">
               <Mail className="absolute left-3 top-1/2 -translate-y-1/2 h-4 w-4 text-muted-foreground" />
               <Input
                 id="email"
                 type="email"
                 placeholder="you@example.com"
-                className="pl-10"
+                className="pl-10 dark:bg-slate-800/50"
                 value={email}
                 onChange={(e) => setEmail(e.target.value)}
                 required
@@ -45,7 +44,7 @@ const Login = () => {
 
           <div className="space-y-2">
             <div className="flex justify-between">
-              <Label htmlFor="password">Password</Label>
+              <Label htmlFor="password" className="dark:text-white">Password</Label>
               <Link to="/forgot-password" className="text-sm text-primary hover:underline">
                 Forgot password?
               </Link>
@@ -56,7 +55,7 @@ const Login = () => {
                 id="password"
                 type="password"
                 placeholder="••••••••"
-                className="pl-10"
+                className="pl-10 dark:bg-slate-800/50"
                 value={password}
                 onChange={(e) => setPassword(e.target.value)}
                 required
@@ -70,7 +69,7 @@ const Login = () => {
         </form>
 
         <div className="text-center pt-4">
-          <p className="text-sm text-muted-foreground">
+          <p className="text-sm text-muted-foreground dark:text-slate-300">
             Don't have an account?{" "}
             <Link to="/signup" className="text-primary font-medium hover:underline">
               Sign up

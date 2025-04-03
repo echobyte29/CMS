@@ -1,9 +1,8 @@
-
 import React, { useEffect } from 'react';
 import { Link } from 'react-router-dom';
 import Hero from '@/components/Hero';
 import EventCard, { EventType } from '@/components/EventCard';
-import { ArrowRight, Calendar, Award, BookOpen, Users } from 'lucide-react';
+import { ArrowRight, Calendar, Award, BookOpen, Users, Briefcase, Code, Trophy, Network } from 'lucide-react';
 import { ButtonCustom } from '@/components/ui/button-custom';
 
 // Sample data for upcoming events
@@ -52,48 +51,86 @@ const Index = () => {
   }, []);
 
   return (
-    <div className="min-h-screen flex flex-col">
+    <div className="min-h-screen bg-background">
       {/* Hero Section */}
       <Hero />
       
       {/* Features Section */}
-      <section className="py-20 bg-secondary">
+      <section className="py-20 bg-background">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
           <div className="text-center mb-12">
-            <h2 className="text-3xl font-bold mb-4">What We Offer</h2>
-            <p className="text-lg text-muted-foreground max-w-2xl mx-auto">
-              ACM Student Chapter provides opportunities for learning, networking, and professional development.
+            <h2 className="text-3xl font-bold mb-4 dark:text-white">Why Join ACM Student Chapter?</h2>
+            <p className="text-lg text-muted-foreground dark:text-slate-300 max-w-2xl mx-auto">
+              Discover the benefits of being part of our vibrant community of computing enthusiasts.
             </p>
           </div>
           
-          <div className="grid md:grid-cols-3 gap-8">
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {[
               {
-                icon: <Calendar className="h-8 w-8" />,
-                title: 'Events & Workshops',
-                description: 'Technical workshops, industry talks, hackathons, and social events throughout the academic year.'
+                icon: <Users />,
+                title: 'Community',
+                description: 'Connect with like-minded peers, industry professionals, and academic leaders in computing.'
               },
               {
-                icon: <Users className="h-8 w-8" />,
-                title: 'Networking',
-                description: 'Connect with peers, faculty, industry professionals, and alumni in the computing field.'
+                icon: <BookOpen />,
+                title: 'Learning',
+                description: 'Access exclusive workshops, seminars, and learning resources to enhance your skills.'
               },
               {
-                icon: <Award className="h-8 w-8" />,
-                title: 'Leadership',
-                description: 'Develop leadership and organizational skills by taking on officer roles or volunteering.'
+                icon: <Briefcase />,
+                title: 'Career Growth',
+                description: 'Get career guidance, internship opportunities, and networking events with top companies.'
+              },
+              {
+                icon: <Code />,
+                title: 'Technical Projects',
+                description: 'Work on real-world projects and gain hands-on experience in various technologies.'
+              },
+              {
+                icon: <Trophy />,
+                title: 'Competitions',
+                description: 'Participate in hackathons, coding contests, and other competitive events.'
+              },
+              {
+                icon: <Network />,
+                title: 'Global Network',
+                description: 'Join a worldwide network of ACM members and access international opportunities.'
               }
-            ].map((feature, i) => (
-              <div 
-                key={i} 
-                className="glass-card p-6 flex flex-col items-center text-center animate-fade-up"
-                style={{ animationDelay: `${i * 100}ms` }}
+            ].map((feature, index) => (
+              <div
+                key={index}
+                className="glass-card p-6 animate-fade-up dark:bg-slate-800/50"
+                style={{ animationDelay: `${index * 100}ms` }}
               >
-                <div className="w-14 h-14 rounded-full bg-primary/10 text-primary flex items-center justify-center mb-5">
+                <div className="w-12 h-12 rounded-full bg-primary/10 dark:bg-primary/20 text-primary flex items-center justify-center mb-4">
                   {feature.icon}
                 </div>
-                <h3 className="text-xl font-semibold mb-3">{feature.title}</h3>
-                <p className="text-muted-foreground">{feature.description}</p>
+                <h3 className="text-xl font-semibold mb-3 dark:text-white">{feature.title}</h3>
+                <p className="text-muted-foreground dark:text-slate-300">{feature.description}</p>
+              </div>
+            ))}
+          </div>
+        </div>
+      </section>
+      
+      {/* Stats Section */}
+      <section className="py-20 bg-secondary/50 dark:bg-slate-900/50">
+        <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
+          <div className="grid md:grid-cols-4 gap-8">
+            {[
+              { label: "Active Members", value: "250+" },
+              { label: "Annual Events", value: "20+" },
+              { label: "Years Active", value: "12" },
+              { label: "Partner Companies", value: "35+" }
+            ].map((stat, index) => (
+              <div
+                key={index}
+                className="glass-card p-6 text-center animate-fade-up dark:bg-slate-800/50"
+                style={{ animationDelay: `${index * 100}ms` }}
+              >
+                <div className="text-3xl font-bold mb-2 dark:text-white">{stat.value}</div>
+                <div className="text-muted-foreground dark:text-slate-300">{stat.label}</div>
               </div>
             ))}
           </div>
@@ -133,16 +170,16 @@ const Index = () => {
       </section>
       
       {/* CTA Section */}
-      <section className="py-20 bg-primary/5 relative overflow-hidden">
-        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent"></div>
+      <section className="py-20 bg-primary/5 dark:bg-slate-900/50 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-br from-primary/10 via-primary/5 to-transparent dark:from-primary/20 dark:via-slate-900/50 dark:to-slate-900"></div>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 relative">
           <div className="max-w-3xl mx-auto text-center">
-            <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 text-sm text-primary mb-6">
+            <div className="inline-flex items-center px-3 py-1 rounded-full bg-primary/10 dark:bg-primary/20 text-sm text-primary mb-6">
               <BookOpen className="h-4 w-4 mr-2" />
               <span>Join Our Community</span>
             </div>
-            <h2 className="text-3xl md:text-4xl font-bold mb-6">Ready to advance your career in computing?</h2>
-            <p className="text-lg text-muted-foreground mb-8">
+            <h2 className="text-3xl md:text-4xl font-bold mb-6 dark:text-white">Ready to advance your career in computing?</h2>
+            <p className="text-lg text-muted-foreground dark:text-slate-300 mb-8">
               Become a member of our ACM Student Chapter today and unlock a world of opportunities in computing and technology.
             </p>
             <div className="flex flex-col sm:flex-row gap-4 justify-center">
@@ -150,7 +187,7 @@ const Index = () => {
                 Become a Member
                 <ArrowRight className="ml-2 h-4 w-4" />
               </ButtonCustom>
-              <ButtonCustom variant="outline" size="lg">
+              <ButtonCustom variant="outline" size="lg" className="dark:bg-slate-800/50">
                 Learn More
               </ButtonCustom>
             </div>
