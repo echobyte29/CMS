@@ -1,9 +1,9 @@
-
 import React, { useState, useEffect } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { cn } from '@/lib/utils';
 import { Calendar, Home, Users, LogIn } from 'lucide-react';
 import Logo from './Logo';
+import { ThemeToggle } from './ThemeToggle';
 
 const Navbar = () => {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -53,14 +53,14 @@ const Navbar = () => {
             <Logo />
           </Link>
 
-          {/* Desktop Navigation */}
-          <div className="hidden md:flex items-center space-x-6">
+          {/* Desktop Navigation - Centered */}
+          <div className="hidden md:flex items-center justify-center flex-1 mx-8">
             {navItems.map((item) => (
               <Link
                 key={item.path}
                 to={item.path}
                 className={cn(
-                  'flex items-center text-sm font-medium transition-all duration-200',
+                  'flex items-center text-sm font-medium transition-all duration-200 mx-4',
                   location.pathname === item.path
                     ? 'text-primary'
                     : 'text-foreground/80 hover:text-foreground'
@@ -70,7 +70,11 @@ const Navbar = () => {
                 {item.name}
               </Link>
             ))}
-            <div className="h-5 w-px bg-border"></div>
+          </div>
+
+          {/* Right side buttons */}
+          <div className="flex items-center space-x-4">
+            <ThemeToggle />
             <Link
               to="/login"
               className="flex items-center text-sm font-medium transition-all duration-200 text-foreground/80 hover:text-foreground"
