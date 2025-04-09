@@ -1,105 +1,215 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
-import { Mail, Home, Calendar, Users, ArrowRight } from 'lucide-react';
+import { Link, useLocation, useNavigate } from 'react-router-dom';
+import { motion } from 'framer-motion';
+import { 
+  Mail, Home, Calendar, Users, ArrowRight, Github, Twitter, Linkedin, 
+  Facebook, Instagram, Code, ChevronRight, ExternalLink, Info
+} from 'lucide-react';
+import Logo from './Logo';
 
 const Footer = () => {
+  const location = useLocation();
+  const navigate = useNavigate();
   const currentYear = new Date().getFullYear();
   
+  const scrollToTop = () => {
+    window.scrollTo({
+      top: 0,
+      behavior: 'smooth'
+    });
+  };
+
+  const handleNavigation = (path: string) => {
+    navigate(path);
+    scrollToTop();
+  };
+
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: {
+        staggerChildren: 0.1
+      }
+    }
+  };
+  
+  const item = {
+    hidden: { opacity: 0, y: 20 },
+    show: { opacity: 1, y: 0 }
+  };
+  
+  const socialLinks = [
+    { name: 'Twitter', icon: <Twitter className="h-4 w-4" />, href: '#', color: 'hover:bg-blue-500' },
+    { name: 'Facebook', icon: <Facebook className="h-4 w-4" />, href: '#', color: 'hover:bg-blue-600' },
+    { name: 'LinkedIn', icon: <Linkedin className="h-4 w-4" />, href: '#', color: 'hover:bg-blue-700' },
+    { name: 'Instagram', icon: <Instagram className="h-4 w-4" />, href: '#', color: 'hover:bg-pink-600' },
+    { name: 'GitHub', icon: <Github className="h-4 w-4" />, href: '#', color: 'hover:bg-slate-700' }
+  ];
+  
+  const quickLinks = [
+    { name: 'Home', path: '/', icon: <Home className="w-4 h-4" /> },
+    { name: 'Membership', path: '/membership', icon: <Users className="w-4 h-4" /> },
+    { name: 'Events', path: '/events', icon: <Calendar className="w-4 h-4" /> },
+    { name: 'About Us', path: '/team', icon: <Info className="w-4 h-4" /> },
+    { name: 'Contact', path: '/contact', icon: <Mail className="w-4 h-4" /> },
+  ];
+  
+  const isAuthPage = ['/login', '/signup', '/admin/login'].includes(location.pathname);
+  
   return (
-    <footer className="bg-white dark:bg-slate-900 border-t border-border dark:border-slate-800">
-      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12">
-        <div className="grid grid-cols-1 md:grid-cols-4 gap-8">
+    <footer className="bg-white border-t border-gray-100 dark:bg-slate-950 dark:border-slate-800/50">
+      {/* Footer top curved border */}
+      <div className="w-full overflow-hidden">
+        <svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 1440 40" className="w-full h-10 fill-white dark:fill-slate-950 translate-y-1">
+          <path d="M0,0L60,5.3C120,11,240,21,360,24C480,27,600,21,720,16C840,11,960,5,1080,8C1200,11,1320,21,1380,26.7L1440,32L1440,40L1380,40C1320,40,1200,40,1080,40C960,40,840,40,720,40C600,40,480,40,360,40C240,40,120,40,60,40L0,40Z"></path>
+        </svg>
+      </div>
+      
+      <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20">
+        <motion.div 
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-10"
+        >
           {/* Brand and description */}
-          <div className="col-span-1 md:col-span-2">
-            <div className="flex items-center space-x-2 font-bold text-xl mb-4">
-              <span className="text-primary">ACM</span>
-              <span className="dark:text-white">Student Chapter</span>
+          <motion.div variants={item} className="col-span-1 lg:col-span-1">
+            <div className="flex items-center mb-5">
+              <Logo className="h-12 w-12" />
+              <span className="ml-3 text-xl font-bold text-gray-900 dark:text-white">ACM Chapter</span>
             </div>
-            <p className="text-muted-foreground dark:text-slate-400 text-sm mb-6 max-w-md">
+            <p className="text-gray-600 dark:text-slate-400 mb-6 max-w-md">
               Empowering the next generation of computing professionals through education, networking, and career development opportunities.
             </p>
-            <div className="flex space-x-4">
-              {['twitter', 'facebook', 'linkedin', 'github'].map((social) => (
-                <a 
-                  key={social}
-                  href="#" 
-                  className="w-9 h-9 flex items-center justify-center rounded-full bg-secondary dark:bg-slate-800 hover:bg-primary hover:text-primary-foreground dark:hover:bg-primary transition-all"
-                  aria-label={`${social} profile`}
+            <div className="flex flex-wrap gap-2">
+              {socialLinks.map((social) => (
+                <motion.a 
+                  key={social.name}
+                  href={social.href}
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                  className={`w-8 h-8 flex items-center justify-center rounded-lg bg-gray-100 text-gray-600 hover:text-white dark:bg-slate-800 dark:text-slate-400 ${social.color} transition-colors duration-300`}
+                  aria-label={`${social.name} profile`}
                 >
-                  <span className="sr-only">{social}</span>
-                  <svg className="w-5 h-5 dark:text-slate-400" fill="currentColor" viewBox="0 0 24 24" aria-hidden="true">
-                    <path fillRule="evenodd" d="M12 2C6.477 2 2 6.484 2 12.017c0 4.425 2.865 8.18 6.839 9.504.5.092.682-.217.682-.483 0-.237-.008-.868-.013-1.703-2.782.605-3.369-1.343-3.369-1.343-.454-1.158-1.11-1.466-1.11-1.466-.908-.62.069-.608.069-.608 1.003.07 1.531 1.032 1.531 1.032.892 1.53 2.341 1.088 2.91.832.092-.647.35-1.088.636-1.338-2.22-.253-4.555-1.113-4.555-4.951 0-1.093.39-1.988 1.029-2.688-.103-.253-.446-1.272.098-2.65 0 0 .84-.27 2.75 1.026A9.564 9.564 0 0112 6.844c.85.004 1.705.115 2.504.337 1.909-1.296 2.747-1.027 2.747-1.027.546 1.379.202 2.398.1 2.651.64.7 1.028 1.595 1.028 2.688 0 3.848-2.339 4.695-4.566 4.943.359.309.678.92.678 1.855 0 1.338-.012 2.419-.012 2.747 0 .268.18.58.688.482A10.019 10.019 0 0022 12.017C22 6.484 17.522 2 12 2z" clipRule="evenodd" />
-                  </svg>
-                </a>
+                  {social.icon}
+                </motion.a>
               ))}
             </div>
-          </div>
+          </motion.div>
 
           {/* Quick links */}
-          <div>
-            <h3 className="font-semibold text-base mb-4 dark:text-white">Quick Links</h3>
+          <motion.div variants={item} className="col-span-1">
+            <h3 className="font-semibold text-lg mb-5 text-gray-900 dark:text-white">Quick Links</h3>
             <ul className="space-y-3">
-              {[
-                { name: 'Home', path: '/', icon: <Home className="w-3.5 h-3.5" /> },
-                { name: 'Membership', path: '/membership', icon: <Users className="w-3.5 h-3.5" /> },
-                { name: 'Events', path: '/events', icon: <Calendar className="w-3.5 h-3.5" /> },
-                { name: 'Contact', path: '/contact', icon: <Mail className="w-3.5 h-3.5" /> },
-              ].map((link) => (
+              {quickLinks.map((link) => (
                 <li key={link.path}>
-                  <Link
-                    to={link.path}
-                    className="text-sm text-muted-foreground hover:text-foreground dark:text-slate-400 dark:hover:text-white flex items-center transition-colors"
+                  <motion.div
+                    whileHover={{ x: 5 }}
+                    transition={{ type: "spring", stiffness: 400, damping: 10 }}
                   >
-                    <span className="flex items-center justify-center w-6 h-6 rounded-full bg-secondary dark:bg-slate-800 mr-2">
-                      {link.icon}
-                    </span>
-                    {link.name}
-                  </Link>
+                    <button
+                      onClick={() => handleNavigation(link.path)}
+                      className="text-gray-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 flex items-center group transition-colors duration-300 w-full"
+                    >
+                      <span className="flex items-center justify-center w-8 h-8 rounded-lg bg-gray-100 text-blue-600 group-hover:bg-blue-500 group-hover:text-white mr-3 transition-colors duration-300 dark:bg-slate-800 dark:text-blue-400">
+                        {link.icon}
+                      </span>
+                      {link.name}
+                      <ChevronRight className="ml-auto h-4 w-4 opacity-0 group-hover:opacity-100 transition-opacity duration-300" />
+                    </button>
+                  </motion.div>
                 </li>
               ))}
             </ul>
-          </div>
+          </motion.div>
+
+          {/* Resources */}
+          <motion.div variants={item} className="col-span-1">
+            <h3 className="font-semibold text-lg mb-5 text-gray-900 dark:text-white">Resources</h3>
+            <ul className="space-y-3">
+              {[
+                { name: 'ACM Digital Library', href: '/resources/library' },
+                { name: 'Learning Center', href: '/resources/learning' },
+                { name: 'Career Resources', href: '/resources/careers' },
+                { name: 'Research Papers', href: '/resources/research' },
+                { name: 'Open Source Projects', href: '/resources/projects' },
+              ].map((resource) => (
+                <li key={resource.name}>
+                  <motion.div whileHover={{ x: 5 }} transition={{ type: "spring", stiffness: 400, damping: 10 }}>
+                    <button
+                      onClick={() => handleNavigation(resource.href)}
+                      className="text-gray-600 hover:text-blue-600 dark:text-slate-400 dark:hover:text-blue-400 flex items-center group transition-colors duration-300 w-full"
+                    >
+                      <ExternalLink className="mr-2 h-3 w-3 text-gray-500 group-hover:text-blue-600 dark:text-slate-500 dark:group-hover:text-blue-400 transition-colors duration-300" />
+                      {resource.name}
+                    </button>
+                  </motion.div>
+                </li>
+              ))}
+            </ul>
+          </motion.div>
 
           {/* Newsletter */}
-          <div>
-            <h3 className="font-semibold text-base mb-4 dark:text-white">Stay Updated</h3>
-            <p className="text-sm text-muted-foreground dark:text-slate-400 mb-4">
+          <motion.div variants={item} className="col-span-1">
+            <h3 className="font-semibold text-lg mb-5 text-gray-900 dark:text-white">Stay Updated</h3>
+            <p className="text-gray-600 dark:text-slate-400 mb-4">
               Subscribe to our newsletter for the latest events and updates.
             </p>
-            <div className="space-y-2">
+            <div className="space-y-3">
               <div className="relative">
                 <input
                   type="email"
                   placeholder="Enter your email"
-                  className="w-full px-4 py-2.5 pr-10 rounded-xl border border-border dark:border-slate-700 dark:bg-slate-800 dark:text-white focus:border-primary focus:ring-1 focus:ring-primary/20 transition-all outline-none"
+                  className="w-full px-4 py-3 pr-12 rounded-xl border border-gray-200 bg-white text-gray-800 placeholder-gray-500 focus:border-blue-500 focus:ring-1 focus:ring-blue-500/20 transition-all outline-none dark:border-slate-700 dark:bg-slate-800/50 dark:text-white dark:placeholder-slate-500"
                 />
-                <button className="absolute right-2 top-1/2 transform -translate-y-1/2 text-primary">
+                <motion.button 
+                  className="absolute right-2 top-1/2 transform -translate-y-1/2 text-blue-600 p-1.5 rounded-lg hover:bg-blue-500/10 transition-colors duration-300 dark:text-blue-400 dark:hover:bg-blue-500/20"
+                  whileHover={{ scale: 1.1 }}
+                  whileTap={{ scale: 0.95 }}
+                >
                   <ArrowRight className="w-5 h-5" />
-                </button>
+                </motion.button>
               </div>
-              <p className="text-xs text-muted-foreground dark:text-slate-400">
+              <p className="text-xs text-gray-500 dark:text-slate-500">
                 By subscribing, you agree to our Privacy Policy.
               </p>
             </div>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
-        <div className="mt-12 pt-8 border-t border-border dark:border-slate-800 flex flex-col md:flex-row justify-between items-center">
-          <p className="text-sm text-muted-foreground dark:text-slate-400">
-            © {currentYear} ACM Student Chapter. All rights reserved.
+        <motion.div 
+          variants={item}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+          className="mt-16 pt-8 border-t border-gray-100 dark:border-slate-800/50 flex flex-col md:flex-row justify-between items-center"
+        >
+          <p className="text-sm text-gray-500 dark:text-slate-500">
+            © {currentYear} ACM Student Chapter
           </p>
-          <div className="flex space-x-6 mt-4 md:mt-0">
-            <a href="#" className="text-xs text-muted-foreground hover:text-foreground dark:text-slate-400 dark:hover:text-white">
+          <div className="flex flex-wrap gap-6 mt-4 md:mt-0">
+            <button 
+              onClick={() => handleNavigation('/privacy-policy')}
+              className="text-xs text-gray-500 hover:text-blue-600 dark:text-slate-500 dark:hover:text-blue-400 transition-colors duration-300"
+            >
               Privacy Policy
-            </a>
-            <a href="#" className="text-xs text-muted-foreground hover:text-foreground dark:text-slate-400 dark:hover:text-white">
+            </button>
+            <button 
+              onClick={() => handleNavigation('/terms-of-service')}
+              className="text-xs text-gray-500 hover:text-blue-600 dark:text-slate-500 dark:hover:text-blue-400 transition-colors duration-300"
+            >
               Terms of Service
-            </a>
-            <a href="#" className="text-xs text-muted-foreground hover:text-foreground dark:text-slate-400 dark:hover:text-white">
+            </button>
+            <button 
+              onClick={() => handleNavigation('/cookie-policy')}
+              className="text-xs text-gray-500 hover:text-blue-600 dark:text-slate-500 dark:hover:text-blue-400 transition-colors duration-300"
+            >
               Cookie Policy
-            </a>
+            </button>
           </div>
-        </div>
+        </motion.div>
       </div>
     </footer>
   );
